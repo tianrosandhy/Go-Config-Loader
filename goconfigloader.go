@@ -71,10 +71,11 @@ func loadEnv() map[string]string {
 		if len(parts) >= 2 {
 			key := parts[0]
 			value := strings.Join(parts[1:], "=")
-			if value[0] == '"' && value[len(value)-1] == '"' {
-				value = value[1 : len(value)-1]
+			if len(value) > 1 {
+				if value[0] == '"' && value[len(value)-1] == '"' {
+					value = value[1 : len(value)-1]
+				}
 			}
-
 			envMapData[key] = value
 		}
 	}
